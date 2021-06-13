@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useHistory } from "react-router-dom";
+import { UserContext } from '../App';
 
 export default function Signup() {
   let history = useHistory()
+  const user = useContext(UserContext)
 
   const [form, setForm] = useState({
     username: '',
@@ -29,8 +31,8 @@ export default function Signup() {
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.success) {
+          user.setUser({user: data.user, token: data.token})
           history.push('/menu')
         } else {
           setErrors(data.errors)
@@ -52,8 +54,8 @@ export default function Signup() {
       </form>
       <div className="errors">
         {!errors ? '' :
-        errors.map(e => (
-          <p>{e}</p>
+        errors.map((e, index) => (
+          <p key="index">{e}</p>
         ))
         }
       </div>
