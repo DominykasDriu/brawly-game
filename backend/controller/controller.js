@@ -39,7 +39,7 @@ logIn = async (req, res) => {
 buyItem = (req, res) => {
   if (req.user.gold >= req.body.price) {
     let finalGold = req.user.gold - req.body.price;
-    User.findOneAndUpdate({_id: req.user._id}, {$push: {[`inventory.${req.body.item.type}s`]: req.body.item.level}, gold: finalGold}, {new: true}, (err, result) => {
+    User.findOneAndUpdate({_id: req.user._id}, {$push: {inventory: req.body}, gold: finalGold}, {new: true}, (err, result) => {
       if (err) return res.json({success: false, err})
       res.json({success: true, user: result})
     })
@@ -49,22 +49,11 @@ buyItem = (req, res) => {
 }
 
 sellItem = (req, res) => {
-  let finalGold = req.user.gold + req.body.price;
-  if (req.body.item.type === 'potion') {
-    let potionsArray = req.user.inventory.potions
-    const indexOfPotion = potionsArray.indexOf(req.body.item.level)
-    potionsArray.splice(indexOfPotion, 1)
-    User.findOneAndUpdate({_id: req.user._id}, {'inventory.potions': potionsArray, gold: finalGold}, {new: true}, (err, result) => {
-      if (err) return res.json({success: false, err})
-      res.json({success: true, user: result})
-    })
-  } else {
-    User.findOneAndUpdate({_id: req.user._id}, {$pull: {[`inventory.${req.body.item.type}s`]: req.body.item.level}, gold: finalGold}, {new: true}, (err, result) => {
-      if (err) return res.json({success: false, err})
-      res.json({success: true, user: result})
-    })
-  }
-  
+  let finalGold = req.user.gold + req.body.sell;
+  User.findOneAndUpdate({_id: req.user._id}, {$pull: {inventory: {id: req.body.id}}, gold: finalGold}, {new: true}, (err, result) => {
+    if (err) return res.json({success: false, err})
+    res.json({success: true, user: result})
+  })
 }
 
 manageHealth = (req, res) => {
