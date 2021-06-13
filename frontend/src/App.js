@@ -4,6 +4,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import ProtectedRoute from './pages/ProtectedRoute';
 import Header from './compoenents/Header'
 import Arena from './pages/Arena'
 import InventoryPage from './pages/InventoryPage'
@@ -23,29 +24,31 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route path='/menu'>
+          {/* Private routes for loged in users */}
+          <ProtectedRoute path='/menu'>
             <Menu/>
-          </Route>
-          <Route path='/arena'>
+          </ProtectedRoute>
+          <ProtectedRoute path='/arena'>
             <Arena/>
-          </Route>
-          <Route path='/inventory'>
+          </ProtectedRoute>
+          <ProtectedRoute path='/inventory'>
             <InventoryPage/>
-          </Route>
+          </ProtectedRoute>
+          <ProtectedRoute path='/shop'>
+            <Shop/>
+          </ProtectedRoute>
+          {/* Public routes */}
           <Route path='/leaderboard'>
             <Leaderboard/>
+          </Route>
+          <Route path='/profile/:name'>
+            <Profile/>
           </Route>
           <Route path='/login'>
             <Login/>
           </Route>
           <Route path='/signup'>
             <Signup/>
-          </Route>
-          <Route path='/shop'>
-            <Shop/>
-          </Route>
-          <Route path='/profile/:name'>
-            <Profile/>
           </Route>
         </Switch>
       </Router>
