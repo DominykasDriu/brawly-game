@@ -55,7 +55,7 @@ export default function Signup() {
       <div className="errors">
         {!errors ? '' :
         errors.map((e, index) => (
-          <p key="index">{e}</p>
+          <p key={index}>{e}</p>
         ))
         }
       </div>

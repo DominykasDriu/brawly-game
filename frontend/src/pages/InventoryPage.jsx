@@ -11,7 +11,7 @@ export default function InventoryPage() {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'token': userState.user.token
+        'token': userState.token
       },
       body: JSON.stringify(item)
     })
@@ -27,10 +27,10 @@ export default function InventoryPage() {
 
   return (
     <main>
-      <h1>{userState.user.user.username} inventory</h1>
-      <p>Gold: {userState.user.user.gold}</p>
+      <h1>{userState.user.username} inventory</h1>
+      <p>Gold: {userState.user.gold}</p>
       <div className="items">
-        {userState.user.user.inventory.map(e => (
+        {userState.user.inventory.map(e => (
           <ItemCard {...e} btn={`Sell for ${e.price}`} fnc={sellItem} key={e.id}/>
         ))}
       </div>

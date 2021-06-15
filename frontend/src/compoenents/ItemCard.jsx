@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function ItemCard(item) {
-console.log(item);
+
   return (
     <div className="item-card">
       <img src={item.image} alt="" />

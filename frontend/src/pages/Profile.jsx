@@ -30,7 +30,7 @@ export default function Profile() {
           </div>
        </div>
       }
-      <Link to="/menu">Back to Menu</Link>
+      <Link to="/leaderboard">Back to Leaderboard</Link>
     </main>
   )
 }

@@ -19,7 +19,7 @@ export default function Shop() {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'token': userState.user.token
+        'token': userState.token
       },
       body: JSON.stringify({...item, id})
     })
@@ -35,7 +35,7 @@ export default function Shop() {
 
   return (
     <main>
-      <h1>Your gold: {userState.user.user.gold}</h1>
+      <h1>Your gold: {userState.user.gold}</h1>
       <div className="shop-items">
         <div className="armors">
           {items && items.armors.map((e, index) => (
@@ -43,7 +43,7 @@ export default function Shop() {
               <p>{e.name}</p>
               <p>Price: {e.price}$</p>
               <button 
-              disabled={userState.user.user.gold <= e.price}
+              disabled={userState.user.gold <= e.price}
               onClick={() => buyItem(e)}
               >BUY</button>
             </div>
@@ -55,7 +55,7 @@ export default function Shop() {
               <p>{e.name}</p>
               <p>Price: {e.price}$</p>
               <button 
-              disabled={userState.user.user.gold <= e.price}
+              disabled={userState.user.gold <= e.price}
               onClick={() => buyItem(e)}
               >BUY</button>
             </div>
@@ -67,7 +67,7 @@ export default function Shop() {
               <p>{e.name}</p>
               <p>Price: {e.price}$</p>
               <button 
-              disabled={userState.user.user.gold <= e.price}
+              disabled={userState.user.gold <= e.price}
               onClick={() => buyItem(e)}
               >BUY</button>
             </div>

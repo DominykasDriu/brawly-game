@@ -31,7 +31,11 @@ export default function Leaderboard() {
           </div>
         ))}
       </div>
-      <Link to="/menu">Back to Menu</Link>
+      { userState.user ? 
+        <Link to="/menu">Back to Menu</Link>
+        :
+        <Link to="/register">Register Now!</Link>
+      }
     </main>
   )
 }

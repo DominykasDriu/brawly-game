@@ -3,17 +3,16 @@ import { Link } from "react-router-dom";
 import { UserContext } from '../App';
 
 export default function Menu() {
-  const data = useContext(UserContext)
-  let user = data.user.user || null
+  const userState = useContext(UserContext)
 
   return (
     <main>
-      {user &&
+      {userState &&
       <div>
-        <img src={user.image} alt="profile-img" />
-        <p>Name: {user.username}</p>
-        <p>Health: {user.health}</p>
-        <p>Gold: {user.gold}</p>
+        <img src={userState.user.image} alt="profile-img" />
+        <p>Name: {userState.user.username}</p>
+        <p>Health: {userState.user.health}</p>
+        <p>Gold: {userState.user.gold}</p>
       </div>
       }
       <div className="menu">
