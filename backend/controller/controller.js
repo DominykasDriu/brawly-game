@@ -62,10 +62,18 @@ manageHealth = (req, res) => {
   let finalHp = req.params.action === 'add' ? current + value : current - value
   if (finalHp >= 100) finalHp = 100
   if (finalHp <= 0) finalHp = 0
-  User.findByIdAndUpdate(req.user._id, {health: finalHp}, {new: true}, (err, result) => {
-    if (err) return res.json({success: false, err})
-    res.json({success: true, user: result})
-  })
+  // If body has id it means it will be health added by potion thus you need to remove the item
+  if (req.body.id) {
+    User.findByIdAndUpdate(req.user._id, {$pull: {inventory: {id: req.body.id}}, health: finalHp}, {new: true}, (err, result) => {
+      if (err) return res.json({success: false, err})
+      res.json({success: true, user: result})
+    })
+  } else {
+    User.findByIdAndUpdate(req.user._id, {health: finalHp}, {new: true}, (err, result) => {
+      if (err) return res.json({success: false, err})
+      res.json({success: true, user: result})
+    })
+  }
 }
 
 getUser = (req, res) => {
