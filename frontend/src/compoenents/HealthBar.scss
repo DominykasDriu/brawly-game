@@ -1,0 +1,11 @@
+.healthbar {
+  height: 30px;
+  width: 100%;
+  background: rgb(255, 248, 235);
+  border: 1px solid #000;
+  &_filler {
+    height: inherit;
+    transition: width .2s ease-in;
+    background: red;
+  }
+}
