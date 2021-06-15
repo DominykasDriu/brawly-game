@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from '../App';
 import HealthBar from '../compoenents/HealthBar';
 import ItemCard from '../compoenents/ItemCard';
+import fightCalculator from '../hooks/fightCalculator'
 
 export default function Arena() {
   const userState = useContext(UserContext)
@@ -36,9 +37,11 @@ export default function Arena() {
         'Content-Type': 'application/json',
         'token': userState.token
       },
-      body: JSON.parse({id: item.id || null})
+      body: JSON.stringify({id: item ? item.id : null})
     })
-    .then(res => res.json())
+    .then(res => {
+      return res.json()
+    })
     .then(data => {
       if (data.success) {
         userState.setUser(prevState => {return {...prevState, user: data.user}})
@@ -55,6 +58,43 @@ export default function Arena() {
       setSelectedArmor(<ItemCard {...item} btn={null}/>)
     } else {
       setSelectedWeapon(<ItemCard {...item} btn={null}/>)
+    }
+  }
+
+  const addLoot = (val) => {
+    fetch(`http://localhost:3001/api/gold/${val}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': userState.token
+      }
+    })
+    .then(res => {
+      return res.json()
+    })
+    .then(data => {
+      if (data.success) {
+        userState.setUser(prevState => {return {...prevState, user: data.user}})
+      } else {
+        console.log(data)
+      }
+    })
+  }
+
+  const fight = () => {
+    if (selectedArmor, selectedWeapon) {
+      let result = fightCalculator(currentMonster, selectedArmor, selectedWeapon)
+      if (result.userHeal) updateHealth('add', 10)
+      updateHealth('remove', result.monsterDmg)
+      addLoot(result.userLoot)
+      let monsterHpAfterHit = currentMonster.hp - result.userDmg
+      if (monsterHpAfterHit >= 1) {
+        setCurrentMonster(prev => {return {...prev, hp: monsterHpAfterHit}})
+      } else {
+        setMonster()
+      }
+    } else {
+      alert('You need to equip some gear before heading in to arena!')
     }
   }
 
@@ -79,7 +119,7 @@ export default function Arena() {
           }
         </div>
       </div>
-      <button>Attack</button>
+      <button onClick={() => fight()}>Attack</button>
       <div className="items">
         <div className="items_current">
           <div className="items_current__armor">
