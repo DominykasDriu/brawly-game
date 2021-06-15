@@ -1,14 +1,14 @@
 import React from 'react'
 
-export default function ItemCard({name, image, level, type, id, btn, fnc}) {
-
+export default function ItemCard(item) {
+console.log(item);
   return (
     <div className="item-card">
-      <img src={image} alt="" />
-      <h3>{name}</h3>
-      <p>Lvl. {level} {type}</p>
+      <img src={item.image} alt="" />
+      <h3>{item.name}</h3>
+      <p>Lvl. {item.level} {item.type}</p>
       {/* If button text is passed render it */}
-      {btn && <button onClick={() => fnc(id)}>{btn}</button>}
+      {item.btn && <button onClick={() => item.fnc(item)}>{item.btn}</button>}
     </div>
   )
 }
