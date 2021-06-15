@@ -1,0 +1,16 @@
+[{
+  "name": "Dark Knight",
+  "image": "https://i.ibb.co/0XkMQrs/pipo-enemy018.png",
+  "damage": 12
+},
+{
+  "name": "Skeleton",
+  "image": "https://i.ibb.co/4pDMykx/pipo-enemy039.png",
+  "damage": 8
+},
+{
+  "name": "Dragon",
+  "image": "https://i.ibb.co/WKJGDz9/pipo-enemy021.png",
+  "damage": 15
+}
+]
