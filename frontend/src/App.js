@@ -20,7 +20,7 @@ export const UserContext = React.createContext('')
 function App() {
   const [user, setUser] = useState(null)
   return (
-    <UserContext.Provider value={{user, setUser}}>
+    <UserContext.Provider value={{...user, setUser}}>
       <Router>
         <Header />
         <Switch>
