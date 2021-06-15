@@ -76,6 +76,14 @@ manageHealth = (req, res) => {
   }
 }
 
+addGold = (req, res) => {
+  let finalGold = parseInt(req.user.gold) + parseInt(req.params.value)
+  User.findOneAndUpdate({_id: req.user._id}, {gold: finalGold}, {new: true}, (err, result) => {
+    if (err) return res.json({success: false, err})
+    res.json({success: true, user: result})
+  })
+}
+
 getUser = (req, res) => {
   User.findOne({username: req.params.name}, (err, result) => {
     res.json({
@@ -107,6 +115,7 @@ module.exports = {
   logIn,
   buyItem,
   sellItem,
+  addGold,
   manageHealth,
   getUser,
   getLeaderboard
