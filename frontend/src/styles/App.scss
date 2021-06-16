@@ -1,0 +1,15 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
+// Colors
+$primary: #e4934c;
+$secondary: #cc8c54;
+$red: #7c142c;
+$darkred: #542b29;
+// Resets
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: 0;
+  font-family: 'Aladin', cursive;
+}
