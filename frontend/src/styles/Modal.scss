@@ -1,0 +1,19 @@
+.modal {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  box-shadow: -1px 10px 39px -10px rgba(0,0,0,0.75);
+  border-radius: 20px;
+  .container {
+    h3 {
+      font-size: 40px;
+    }
+    p {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .btn {
+      margin: 0 5px;
+    }
+  }
+}
