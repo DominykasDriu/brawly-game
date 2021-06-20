@@ -22,20 +22,25 @@ export default function Leaderboard() {
 
   return (
     <main>
-      <h1>{userState.user ? 'Leaderboard' : 'Register and join the heroes!'}</h1>
-      <div className="users-container">
-        {!leaders ? 'Loading' : leaders.map((e, index) => (
-          <div className="user" key={index} onClick={() => handleClick(e.username)}>
-            <p>{e.username}</p>
-            <span>Gold: {e.gold}</span>
-          </div>
-        ))}
+      <div className="container leaderboard">
+      <h2>{userState.user ? 'Leaderboard' : 'Register and join the heroes!'}</h2>
+        <div className="leaderboard_container">
+          {!leaders ? 'Loading...' : leaders.map((e, index) => (
+            <div className="leaderboard_container__card" key={index} onClick={() => handleClick(e.username)}>
+              <div className="left">
+                <p>{index + 1}.</p>
+                <p>{e.username}</p>
+              </div>
+              <p>Gold: {e.gold}</p>
+            </div>
+          ))}
+        </div>
+        { userState.user ? 
+          <Link className="btn" to="/menu">Back to Menu</Link>
+          :
+          <Link className="btn" to="/signup">Register Now!</Link>
+        }
       </div>
-      { userState.user ? 
-        <Link to="/menu">Back to Menu</Link>
-        :
-        <Link to="/register">Register Now!</Link>
-      }
     </main>
   )
 }
