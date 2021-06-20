@@ -1,0 +1,14 @@
+.profile {
+  &_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .inventory {
+    margin: 20px 0;
+  }
+  .user-stats {
+    margin: 0 auto;
+  }
+}
