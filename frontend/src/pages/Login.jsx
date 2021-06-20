@@ -45,19 +45,22 @@ export default function Signup() {
 
   return (
     <main>
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
-        <input type="text" name="username" onChange={handleChange}/>
-        <label>Password</label>
-        <input type="password" name="password" onChange={handleChange}/>
-        <button type="submit">Submit</button>
-      </form>
-      <div className="errors">
-        {!errors ? '' :
-        errors.map((e, index) => (
-          <p key={index}>{e}</p>
-        ))
-        }
+      <div className="container login">
+        <h2>Log in</h2>
+        <form onSubmit={handleSubmit}>
+          <label>Username</label>
+          <input type="text" name="username" onChange={handleChange}/>
+          <label>Password</label>
+          <input type="password" name="password" onChange={handleChange}/>
+          <button className="btn" type="submit">Submit</button>
+        </form>
+        <div className="errors">
+          {!errors ? '' :
+          errors.map((e, index) => (
+            <p key={index}>{e}</p>
+          ))
+          }
+        </div>
       </div>
     </main>
   )
