@@ -1,86 +1,90 @@
+[{
+	"name": "Leather armor",
+	"stat": 3,
+	"price": 50,
+	"sell": 10,
+	"image": "https://i.ibb.co/bsnh5KZ/leather.png",
+	"level": 1,
+	"description": "Gives you 3 defence points.",
+	"type": "armor"
+},
 {
-	"armors": [{
-			"name": "Leather armor",
-			"stat": 3,
-			"price": 50,
-			"sell": 10,
-			"image": "https://i.ibb.co/bsnh5KZ/leather.png",
-			"level": 1,
-			"type": "armor"
-		},
-		{
-			"name": "Iron armor",
-			"stat": 7,
-			"price": 250,
-			"sell": 100,
-			"image": "https://i.ibb.co/m5ZRnMY/armor.png",
-			"level": 2,
-			"type": "armor"
-		},
-		{
-			"name": "Dragon armor",
-			"stat": 8,
-			"price": 800,
-			"sell": 300,
-			"image": "https://i.ibb.co/b2k2L01/armor-2.png",
-			"level": 3,
-			"type": "armor"
-		}
-	],
-	"weapons": [{
-			"name": "Sword",
-			"stat": 8,
-			"price": 40,
-			"sell": 5,
-			"image": "https://i.ibb.co/ZmTykcx/sword2.png",
-			"level": 1,
-			"type": "weapon"
-		},
-		{
-			"name": "Bow",
-			"stat": 6,
-			"price": 300,
-			"sell": 80,
-			"image": "https://i.ibb.co/HzThJTR/bow2.png",
-			"level": 2,
-			"type": "weapon"
-		},
-		{
-			"name": "Magic Wand",
-			"stat": 5,
-			"price": 1000,
-			"sell": 400,
-			"image": "https://i.ibb.co/09CWVbj/wand2.png",
-			"level": 3,
-			"type": "weapon"
-		}
-	],
-	"potions": [{
-			"name": "Minor Potion",
-			"stat": 20,
-			"price": 10,
-			"sell": 5,
-			"image": "https://i.ibb.co/vBGGvdg/potion2.png",
-			"level": 1,
-			"type": "potion"
-		},
-		{
-			"name": "Medium Potion",
-			"stat": 35,
-			"price": 30,
-			"sell": 10,
-			"image": "https://i.ibb.co/9q9qYd3/potion3.png",
-			"level": 2,
-			"type": "potion"
-		},
-		{
-			"name": "Big Potion",
-			"stat": 50,
-			"price": 60,
-			"sell": 20,
-			"image": "https://i.ibb.co/Cmdpy6F/potion4.png",
-			"level": 3,
-			"type": "potion"
-		}
-	]
+	"name": "Iron armor",
+	"stat": 7,
+	"price": 250,
+	"sell": 100,
+	"image": "https://i.ibb.co/m5ZRnMY/armor.png",
+	"level": 2,
+	"description": "Gives you 7 defence points.",
+	"type": "armor"
+},
+{
+	"name": "Dragon armor",
+	"stat": 8,
+	"price": 800,
+	"sell": 300,
+	"image": "https://i.ibb.co/b2k2L01/armor-2.png",
+	"level": 3,
+	"description": "Gives you 8 defence points.",
+	"type": "armor"
+},
+{
+	"name": "Sword",
+	"stat": 8,
+	"price": 40,
+	"sell": 5,
+	"image": "https://i.ibb.co/ZmTykcx/sword2.png",
+	"level": 1,
+	"description": "Has 20% chance to block enemy attack.",
+	"type": "weapon"
+},
+{
+	"name": "Bow",
+	"stat": 6,
+	"price": 300,
+	"sell": 80,
+	"image": "https://i.ibb.co/HzThJTR/bow2.png",
+	"level": 2,
+	"description": "Has 30% chance to do double damage.",
+	"type": "weapon"
+},
+{
+	"name": "Magic Wand",
+	"stat": 5,
+	"price": 1000,
+	"sell": 400,
+	"image": "https://i.ibb.co/09CWVbj/wand2.png",
+	"level": 3,
+	"description": "Has 40% chance to heal hero on enemy attack by 10 hit points.",
+	"type": "weapon"
+}, {
+	"name": "Minor Potion",
+	"stat": 20,
+	"price": 10,
+	"sell": 5,
+	"image": "https://i.ibb.co/vBGGvdg/potion2.png",
+	"level": 1,
+	"description": "Heals you for 20 hit points.",
+	"type": "potion"
+},
+{
+	"name": "Medium Potion",
+	"stat": 35,
+	"price": 30,
+	"sell": 10,
+	"image": "https://i.ibb.co/9q9qYd3/potion3.png",
+	"level": 2,
+	"description": "Heals you for 35 hit points.",
+	"type": "potion"
+},
+{
+	"name": "Big Potion",
+	"stat": 50,
+	"price": 60,
+	"sell": 20,
+	"image": "https://i.ibb.co/Cmdpy6F/potion4.png",
+	"level": 3,
+	"description": "Heals you for 60 hit points.",
+	"type": "potion"
 }
+]
