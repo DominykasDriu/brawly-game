@@ -12,4 +12,18 @@ $darkred: #542b29;
   margin: 0;
   text-decoration: 0;
   font-family: 'Aladin', cursive;
+  outline: none;
+  color: #78471a;
 }
+body {
+  background: url('https://static.vecteezy.com/system/resources/previews/002/193/057/large_2x/wood-texture-background-free-vector.jpg') no-repeat center top;
+}
+// Imports
+@import'./Header.scss';
+@import'./Components.scss';
+@import'./Login&Signup.scss';
+@import'./Leaderboard.scss';
+@import'./Menu.scss';
+@import'./Profile.scss';
+@import'./Shop&InventoryPage.scss';
+@import'./Arena.scss';
