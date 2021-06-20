@@ -13,7 +13,9 @@ export default function Header() {
 
   return (
     <header>
-      <h1 className="logo">Brawly</h1>
+      <Link to="/">
+        <h1 className="logo">Brawly</h1>
+      </Link>
       {!user.user ? 
       <div className="user-managment">
         <Link className="btn" to="/signup">Sign Up</Link>
