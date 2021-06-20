@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from '../App';
 import HealthBar from '../compoenents/HealthBar';
 import ItemCard from '../compoenents/ItemCard';
+import Modal from '../compoenents/Modal';
 import fightCalculator from '../hooks/fightCalculator'
 
 export default function Arena() {
@@ -12,6 +13,11 @@ export default function Arena() {
   const [currentMonster, setCurrentMonster] = useState({})
   const [selectedArmor, setSelectedArmor] = useState(null)
   const [selectedWeapon, setSelectedWeapon] = useState(null)
+  const [modal, setModal] = useState({
+    on: true,
+    title: 'Tip',
+    body: 'Equip a weapon and armor before the fight!'
+  })
 
   const monsterImage = useRef(null)
 
@@ -88,6 +94,15 @@ export default function Arena() {
       let result = fightCalculator(currentMonster, selectedArmor, selectedWeapon)
       if (result.userHeal) updateHealth('add', 10)
       updateHealth('remove', result.monsterDmg)
+      if (userState.user.health <= 0) {
+        return setModal({
+          on: true,
+          title: 'Warning',
+          body: 'You died, replenish your HP with potions before continuing the fight!',
+          func: null,
+          closeModal: setModal
+        })
+      }
       addLoot(result.userLoot)
       let monsterHpAfterHit = currentMonster.hp - result.userDmg
       if (monsterHpAfterHit >= 1) {
@@ -95,7 +110,6 @@ export default function Arena() {
         setTimeout(()=> {
           monsterImage.current.classList.remove('shake')
         }, 500)
-        console.log(monsterImage);
         setCurrentMonster(prev => {return {...prev, hp: monsterHpAfterHit}})
       } else {
         setMonster()
@@ -152,6 +166,7 @@ export default function Arena() {
           </div>
         </div>
       </div>
+      <Modal {...modal} closeModal={setModal}/>
     </main>
   )
 }
