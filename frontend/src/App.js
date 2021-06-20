@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
+import './styles/App.scss'
 import ProtectedRoute from './pages/ProtectedRoute';
 import Header from './compoenents/Header'
 import Arena from './pages/Arena'
@@ -24,6 +26,9 @@ function App() {
       <Router>
         <Header />
         <Switch>
+          <Route exact path='/'>
+            <Redirect to='/leaderboard'/>
+          </Route>
           {/* Private routes for loged in users */}
           <ProtectedRoute path='/menu'>
             <Menu/>
