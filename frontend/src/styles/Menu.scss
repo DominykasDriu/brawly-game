@@ -1,0 +1,13 @@
+.menu {
+  h2 {
+    margin-bottom: 20px;
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+    .btn {
+      margin: 15px 0;
+      text-align: center;
+    }
+  }
+}
