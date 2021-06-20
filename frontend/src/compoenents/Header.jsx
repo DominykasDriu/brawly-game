@@ -13,14 +13,16 @@ export default function Header() {
 
   return (
     <header>
-      <h1>Brawly</h1>
+      <h1 className="logo">Brawly</h1>
       {!user.user ? 
-      <div>
-        <Link to="/signup">Sign Up</Link>
-        <Link to="/login">Log In</Link>
+      <div className="user-managment">
+        <Link className="btn" to="/signup">Sign Up</Link>
+        <Link className="btn" to="/login">Log In</Link>
       </div>
       :
-      <button onClick={handleLogOut}>Log Out</button>
+      <div className="user-managment">
+        <button className="btn" onClick={handleLogOut}>Log Out</button>
+      </div>
       }
     </header>
   )

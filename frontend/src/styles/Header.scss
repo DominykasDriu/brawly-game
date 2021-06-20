@@ -1,0 +1,23 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 80px;
+	background:linear-gradient(to bottom, #7d5d3b 5%, #634b30 100%);
+	background-color:#7d5d3b;
+	border:1px solid #54381e;
+  .logo {
+    font-size: 70px;
+    color: $red;
+    text-shadow:
+    -2px -2px 0 $primary,  
+     2px -2px 0 $primary,
+    -2px  2px 0 $primary,
+     2px  2px 0 $primary;
+  }
+  .user-managment {
+    * {
+      margin: 0 5px;
+    }
+  }
+}
