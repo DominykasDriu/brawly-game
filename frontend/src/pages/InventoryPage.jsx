@@ -27,14 +27,17 @@ export default function InventoryPage() {
 
   return (
     <main>
-      <h1>{userState.user.username} inventory</h1>
-      <p>Gold: {userState.user.gold}</p>
-      <div className="items">
-        {userState.user.inventory.map(e => (
-          <ItemCard {...e} btn={`Sell for ${e.price}`} fnc={sellItem} key={e.id}/>
-        ))}
+      <div className="container inventory-page">
+        <h2>Inventory</h2>
+        <p className="inventory-page_gold">Your gold: {userState.user.gold}</p>
+        <div className={'inventory ' + (userState.user.inventory.length >= 10 && 'scroll')}>
+          {userState.user.inventory.map(e => (
+            <ItemCard {...e} btn={`Sell for ${e.sell}`} fnc={sellItem} key={e.id}/>
+          ))}
+          {userState.user.inventory.length <= 0 && (<h3>Buy items in the shop!</h3>)}
+        </div>
+        <Link className="btn" to="/menu">Back to Menu</Link>
       </div>
-      <Link to="/menu">Back to Menu</Link>
     </main>
   )
 }

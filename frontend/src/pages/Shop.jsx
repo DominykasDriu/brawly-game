@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Link } from "react-router-dom";
 import { UserContext } from '../App';
+import ItemCard from '../compoenents/ItemCard';
 
 export default function Shop() {
   const [items, setItems] = useState(null)
@@ -12,7 +13,7 @@ export default function Shop() {
     .then(res => res.json())
     .then(data => setItems(data))
   }, [])
-
+  console.log(items);
   const buyItem = (item) => {
     let id = String(Date.now()) + String(Math.floor(Math.random() * 1000));
     fetch('http://localhost:3001/api/buy', {
@@ -35,46 +36,18 @@ export default function Shop() {
 
   return (
     <main>
-      <h1>Your gold: {userState.user.gold}</h1>
-      <div className="shop-items">
-        <div className="armors">
-          {items && items.armors.map((e, index) => (
-            <div key={index}>
-              <p>{e.name}</p>
-              <p>Price: {e.price}$</p>
-              <button 
-              disabled={userState.user.gold <= e.price}
-              onClick={() => buyItem(e)}
-              >BUY</button>
-            </div>
-          ))}
+      <div className="container shop">
+        <h2>Shop</h2>
+        <p className="shop_gold">Your gold: {userState.user.gold}</p>
+        <div className="shop-items">
+          <div className="inventory">
+            {items && items.map((e) => (
+              <ItemCard {...e} btn={`Buy for ${e.price}`} fnc={buyItem} key={e.id} disabled={userState.user.gold >= e.price ? false : true}/>
+            ))}
+          </div>
         </div>
-        <div className="weapons">
-          {items && items.weapons.map((e, index) => (
-            <div key={index}>
-              <p>{e.name}</p>
-              <p>Price: {e.price}$</p>
-              <button 
-              disabled={userState.user.gold <= e.price}
-              onClick={() => buyItem(e)}
-              >BUY</button>
-            </div>
-          ))}
-        </div>
-        <div className="potions">
-          {items && items.potions.map((e, index) => (
-            <div key={index}>
-              <p>{e.name}</p>
-              <p>Price: {e.price}$</p>
-              <button 
-              disabled={userState.user.gold <= e.price}
-              onClick={() => buyItem(e)}
-              >BUY</button>
-            </div>
-          ))}
-        </div>
+        <Link className="btn" to="/menu">Back to Menu</Link>
       </div>
-      <Link to="/menu">Back to Menu</Link>
     </main>
   )
 }
