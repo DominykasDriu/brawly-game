@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useRef } from 'react'
 import { Link } from "react-router-dom";
 import { UserContext } from '../App';
 import HealthBar from '../compoenents/HealthBar';
@@ -12,6 +12,8 @@ export default function Arena() {
   const [currentMonster, setCurrentMonster] = useState({})
   const [selectedArmor, setSelectedArmor] = useState(null)
   const [selectedWeapon, setSelectedWeapon] = useState(null)
+
+  const monsterImage = useRef(null)
 
   useEffect(() => {
     fetch('monsters.json')
@@ -55,9 +57,9 @@ export default function Arena() {
     if (item.type === 'potion') {
       updateHealth('add', item.stat, item)
     } else if (item.type === 'armor') {
-      setSelectedArmor(<ItemCard {...item} btn={null}/>)
+      setSelectedArmor({...item})
     } else {
-      setSelectedWeapon(<ItemCard {...item} btn={null}/>)
+      setSelectedWeapon({...item})
     }
   }
 
@@ -89,6 +91,11 @@ export default function Arena() {
       addLoot(result.userLoot)
       let monsterHpAfterHit = currentMonster.hp - result.userDmg
       if (monsterHpAfterHit >= 1) {
+        monsterImage.current.classList.add('shake')
+        setTimeout(()=> {
+          monsterImage.current.classList.remove('shake')
+        }, 500)
+        console.log(monsterImage);
         setCurrentMonster(prev => {return {...prev, hp: monsterHpAfterHit}})
       } else {
         setMonster()
@@ -100,45 +107,51 @@ export default function Arena() {
 
   return (
     <main>
-      <div className="combat-window">
-        <div className="user">
-          <div>
-            <HealthBar hp={userState.user.health}/>
-            <img src={userState.user.image} alt="profile-img" />
-            <h3>{userState.user.username}</h3>
+      <div className="container arena">
+        <div className="arena_combat-wrapper">
+          <div className="user">
+              <HealthBar hp={userState.user.health}/>
+              <div className="profile-image">
+                <img src={userState.user.image} alt="profile-img" />
+              </div>
+              <div>
+                <h3>{userState.user.username}</h3>
+                <p>Damage {selectedWeapon ? selectedWeapon.stat : 0} - Special effect: {selectedWeapon && selectedWeapon.description}</p>
+              </div>
+          </div>
+          <div className="arena_combat-wrapper__cta">
+            <button className="btn" disabled={selectedWeapon && selectedArmor ? false : true} onClick={() => fight()}>Attack</button>
+            <Link className="btn" to="/menu">Run Away!</Link>
+          </div>
+          <div className="monster">
+            {currentMonster && 
+            <div className="monster_card">
+              <HealthBar hp={currentMonster.hp}/>
+              <img ref={monsterImage} src={currentMonster.image} alt={currentMonster.name} />
+              <h3>{currentMonster.name}</h3>
+              <p>Damage {currentMonster.damage}</p>
+            </div>
+            }
           </div>
         </div>
-        <div className="monster">
-          {currentMonster && 
-          <div>
-            <HealthBar hp={currentMonster.hp}/>
-            <img src={currentMonster.image} alt={currentMonster.name} />
-            <h3>{currentMonster.name}</h3>
-            <p>Damage {currentMonster.damage}</p>
+        <div className="items">
+          <div className="items_current">
+            <div className="items_current__armor">
+              <h3>Armor</h3>
+              {selectedArmor ? <ItemCard {...selectedArmor} btn={null}/> : (<div className="empty-slot"></div>)}
+            </div>
+            <div className="items_current__weapon">
+              <h3>Weapon</h3>
+              {selectedWeapon ? <ItemCard {...selectedWeapon} btn={null}/> : (<div className="empty-slot"></div>)}
+            </div>
           </div>
-          }
+          <div className="items_inventory inventory big">
+            {userState.user.inventory.map(e => (
+              <ItemCard {...e} btn={'Use'} fnc={useItem} key={e.id}/>
+            ))}
+          </div>
         </div>
       </div>
-      <button onClick={() => fight()}>Attack</button>
-      <div className="items">
-        <div className="items_current">
-          <div className="items_current__armor">
-            <h3>Armor</h3>
-            {selectedArmor}
-          </div>
-          <div className="items_current__weapon">
-            <h3>Weapons</h3>
-            {selectedWeapon}
-          </div>
-        </div>
-        <div className="items_inventory">
-          inventory:
-          {userState.user.inventory.map(e => (
-            <ItemCard {...e} btn={'Use'} fnc={useItem} key={e.id}/>
-          ))}
-        </div>
-      </div>
-      <Link to="/menu">Run Away!</Link>
     </main>
   )
 }
