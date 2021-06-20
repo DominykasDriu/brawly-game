@@ -116,7 +116,7 @@ export default function Arena() {
               </div>
               <div>
                 <h3>{userState.user.username}</h3>
-                <p>Damage {selectedWeapon ? selectedWeapon.stat : 0} - Special effect: {selectedWeapon && selectedWeapon.description}</p>
+                <p>Damage {selectedWeapon ? selectedWeapon.stat : 0}</p>
               </div>
           </div>
           <div className="arena_combat-wrapper__cta">

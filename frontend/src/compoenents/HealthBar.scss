@@ -2,10 +2,13 @@
   height: 30px;
   width: 100%;
   background: rgb(255, 248, 235);
-  border: 1px solid #000;
+  border: 3px solid #78471a;
+  border-radius: 10px;
+  box-sizing: content-box;
+  overflow: hidden;
   &_filler {
     height: inherit;
     transition: width .2s ease-in;
-    background: red;
+    background: rgb(168, 5, 5);
   }
 }
