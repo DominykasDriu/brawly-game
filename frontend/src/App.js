@@ -20,6 +20,7 @@ import Signup from './pages/Signup'
 export const UserContext = React.createContext('')
 
 function App() {
+  // Main loged in user state that is distributed to all components in the application
   const [user, setUser] = useState(null)
   return (
     <UserContext.Provider value={{...user, setUser}}>

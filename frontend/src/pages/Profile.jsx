@@ -5,10 +5,11 @@ import ItemCard from '../compoenents/ItemCard';
 export default function Profile() {
   const {name} = useParams()
   const [profile, setProfile] = useState(null)
-
+  // Load user from URL param
   useEffect(() => {
     fetch(`http://localhost:3001/api/user/${name}`)
     .then(res => res.json())
+    // Set the user state
     .then(data => setProfile(data))
   }, [])
 
@@ -28,6 +29,7 @@ export default function Profile() {
             </div>
           </div>
           <div className={'inventory ' + (profile.inventory.length >= 10 && 'scroll w-btn')}>
+            {/* Render selected user inventory */}
             {profile.inventory.map(e => (
               <ItemCard {...e} key={e.id} btn={null}/>
             ))}

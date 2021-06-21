@@ -5,7 +5,7 @@ import { UserContext } from '../App';
 export default function Header() {
   let history = useHistory()
   const user = useContext(UserContext)
-  
+  // Logout logic which resets user state and redirects user to the leaderboard
   const handleLogOut = () => {
     user.setUser(null)
     history.push('/leaderboard')
@@ -16,6 +16,7 @@ export default function Header() {
       <Link to="/">
         <h1 className="logo">Brawly</h1>
       </Link>
+      {/* Conditionaly shown login/signup/logout buttons*/}
       {!user.user ? 
       <div className="user-managment">
         <Link className="btn" to="/signup">Sign Up</Link>

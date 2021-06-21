@@ -5,7 +5,7 @@ import ItemCard from '../compoenents/ItemCard';
 
 export default function InventoryPage() {
   const userState = useContext(UserContext)
-
+  // Sell items API function
   const sellItem = (item) => {
     fetch('http://localhost:3001/api/sell', {
       method: 'PUT',

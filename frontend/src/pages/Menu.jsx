@@ -9,6 +9,7 @@ export default function Menu() {
     <main>
       <div className="container menu">
         <h2>Menu</h2>
+        {/* Render current user stats */}
         {userState &&
         <div className="user-stats">
           <div className="user-stats_image profile-image">
@@ -21,6 +22,7 @@ export default function Menu() {
           </div>
         </div>
         }
+        {/* Menu links */}
         <div className="menu">
           <Link className="btn" to="/inventory">Inventory</Link>
           <Link className="btn" to="/shop">Shop</Link>
